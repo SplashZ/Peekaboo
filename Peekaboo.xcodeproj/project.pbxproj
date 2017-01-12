@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E2146ED91E2683FC00ED1B49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146ED81E2683FC00ED1B49 /* main.m */; };
+		E2146EDC1E2683FC00ED1B49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146EDB1E2683FC00ED1B49 /* AppDelegate.m */; };
+		E2146EE21E2683FC00ED1B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2146EE01E2683FC00ED1B49 /* Main.storyboard */; };
+		E2146EE41E2683FC00ED1B49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2146EE31E2683FC00ED1B49 /* Assets.xcassets */; };
+		E2146EE71E2683FC00ED1B49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2146EE51E2683FC00ED1B49 /* LaunchScreen.storyboard */; };
+		E2146F581E268B8A00ED1B49 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F411E268B8A00ED1B49 /* LocationManager.m */; };
+		E2146F591E268B8A00ED1B49 /* PeekabooAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F431E268B8A00ED1B49 /* PeekabooAnnotation.m */; };
+		E2146F5A1E268B8A00ED1B49 /* PeekabooInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F451E268B8A00ED1B49 /* PeekabooInfo.m */; };
+		E2146F5B1E268B8A00ED1B49 /* PeekabooManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F471E268B8A00ED1B49 /* PeekabooManager.m */; };
+		E2146F5C1E268B8A00ED1B49 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F491E268B8A00ED1B49 /* Player.m */; };
+		E2146F5D1E268B8A00ED1B49 /* PlayerAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F4B1E268B8A00ED1B49 /* PlayerAnnotation.m */; };
+		E2146F5E1E268B8A00ED1B49 /* TestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F4D1E268B8A00ED1B49 /* TestInfo.m */; };
+		E2146F5F1E268B8A00ED1B49 /* PeekabooAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F501E268B8A00ED1B49 /* PeekabooAnnotationView.m */; };
+		E2146F601E268B8A00ED1B49 /* PeekabooMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F521E268B8A00ED1B49 /* PeekabooMap.m */; };
+		E2146F611E268B8A00ED1B49 /* PlayerAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F541E268B8A00ED1B49 /* PlayerAnnotationView.m */; };
+		E2146F621E268B8A00ED1B49 /* PeekabooViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F571E268B8A00ED1B49 /* PeekabooViewController.m */; };
+		E2146F671E268B9A00ED1B49 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F641E268B9A00ED1B49 /* BaseNavigationController.m */; };
+		E2146F681E268B9A00ED1B49 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2146F661E268B9A00ED1B49 /* ViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		E2146ED41E2683FC00ED1B49 /* Peekaboo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peekaboo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2146ED81E2683FC00ED1B49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E2146EDA1E2683FC00ED1B49 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E2146EDB1E2683FC00ED1B49 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E2146EE11E2683FC00ED1B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E2146EE31E2683FC00ED1B49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2146EE61E2683FC00ED1B49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E2146EE81E2683FC00ED1B49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2146F401E268B8A00ED1B49 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		E2146F411E268B8A00ED1B49 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		E2146F421E268B8A00ED1B49 /* PeekabooAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooAnnotation.h; sourceTree = "<group>"; };
+		E2146F431E268B8A00ED1B49 /* PeekabooAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooAnnotation.m; sourceTree = "<group>"; };
+		E2146F441E268B8A00ED1B49 /* PeekabooInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooInfo.h; sourceTree = "<group>"; };
+		E2146F451E268B8A00ED1B49 /* PeekabooInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooInfo.m; sourceTree = "<group>"; };
+		E2146F461E268B8A00ED1B49 /* PeekabooManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooManager.h; sourceTree = "<group>"; };
+		E2146F471E268B8A00ED1B49 /* PeekabooManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooManager.m; sourceTree = "<group>"; };
+		E2146F481E268B8A00ED1B49 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		E2146F491E268B8A00ED1B49 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		E2146F4A1E268B8A00ED1B49 /* PlayerAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAnnotation.h; sourceTree = "<group>"; };
+		E2146F4B1E268B8A00ED1B49 /* PlayerAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAnnotation.m; sourceTree = "<group>"; };
+		E2146F4C1E268B8A00ED1B49 /* TestInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestInfo.h; sourceTree = "<group>"; };
+		E2146F4D1E268B8A00ED1B49 /* TestInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestInfo.m; sourceTree = "<group>"; };
+		E2146F4F1E268B8A00ED1B49 /* PeekabooAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooAnnotationView.h; sourceTree = "<group>"; };
+		E2146F501E268B8A00ED1B49 /* PeekabooAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooAnnotationView.m; sourceTree = "<group>"; };
+		E2146F511E268B8A00ED1B49 /* PeekabooMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooMap.h; sourceTree = "<group>"; };
+		E2146F521E268B8A00ED1B49 /* PeekabooMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooMap.m; sourceTree = "<group>"; };
+		E2146F531E268B8A00ED1B49 /* PlayerAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerAnnotationView.h; sourceTree = "<group>"; };
+		E2146F541E268B8A00ED1B49 /* PlayerAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerAnnotationView.m; sourceTree = "<group>"; };
+		E2146F561E268B8A00ED1B49 /* PeekabooViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeekabooViewController.h; sourceTree = "<group>"; };
+		E2146F571E268B8A00ED1B49 /* PeekabooViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeekabooViewController.m; sourceTree = "<group>"; };
+		E2146F631E268B9A00ED1B49 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		E2146F641E268B9A00ED1B49 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		E2146F651E268B9A00ED1B49 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E2146F661E268B9A00ED1B49 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2146ED11E2683FC00ED1B49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E2146ECB1E2683FC00ED1B49 = {
+			isa = PBXGroup;
+			children = (
+				E2146ED61E2683FC00ED1B49 /* Peekaboo */,
+				E2146ED51E2683FC00ED1B49 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E2146ED51E2683FC00ED1B49 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2146ED41E2683FC00ED1B49 /* Peekaboo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2146ED61E2683FC00ED1B49 /* Peekaboo */ = {
+			isa = PBXGroup;
+			children = (
+				E2146F3E1E268B8A00ED1B49 /* Source */,
+				E2146F631E268B9A00ED1B49 /* BaseNavigationController.h */,
+				E2146F641E268B9A00ED1B49 /* BaseNavigationController.m */,
+				E2146F651E268B9A00ED1B49 /* ViewController.h */,
+				E2146F661E268B9A00ED1B49 /* ViewController.m */,
+				E2146EDA1E2683FC00ED1B49 /* AppDelegate.h */,
+				E2146EDB1E2683FC00ED1B49 /* AppDelegate.m */,
+				E2146EE01E2683FC00ED1B49 /* Main.storyboard */,
+				E2146EE31E2683FC00ED1B49 /* Assets.xcassets */,
+				E2146EE51E2683FC00ED1B49 /* LaunchScreen.storyboard */,
+				E2146EE81E2683FC00ED1B49 /* Info.plist */,
+				E2146ED71E2683FC00ED1B49 /* Supporting Files */,
+			);
+			path = Peekaboo;
+			sourceTree = "<group>";
+		};
+		E2146ED71E2683FC00ED1B49 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2146ED81E2683FC00ED1B49 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2146F3E1E268B8A00ED1B49 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E2146F3F1E268B8A00ED1B49 /* Model */,
+				E2146F4E1E268B8A00ED1B49 /* View */,
+				E2146F551E268B8A00ED1B49 /* ViewController */,
+				E2146F4C1E268B8A00ED1B49 /* TestInfo.h */,
+				E2146F4D1E268B8A00ED1B49 /* TestInfo.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		E2146F3F1E268B8A00ED1B49 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2146F401E268B8A00ED1B49 /* LocationManager.h */,
+				E2146F411E268B8A00ED1B49 /* LocationManager.m */,
+				E2146F421E268B8A00ED1B49 /* PeekabooAnnotation.h */,
+				E2146F431E268B8A00ED1B49 /* PeekabooAnnotation.m */,
+				E2146F441E268B8A00ED1B49 /* PeekabooInfo.h */,
+				E2146F451E268B8A00ED1B49 /* PeekabooInfo.m */,
+				E2146F461E268B8A00ED1B49 /* PeekabooManager.h */,
+				E2146F471E268B8A00ED1B49 /* PeekabooManager.m */,
+				E2146F481E268B8A00ED1B49 /* Player.h */,
+				E2146F491E268B8A00ED1B49 /* Player.m */,
+				E2146F4A1E268B8A00ED1B49 /* PlayerAnnotation.h */,
+				E2146F4B1E268B8A00ED1B49 /* PlayerAnnotation.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E2146F4E1E268B8A00ED1B49 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2146F4F1E268B8A00ED1B49 /* PeekabooAnnotationView.h */,
+				E2146F501E268B8A00ED1B49 /* PeekabooAnnotationView.m */,
+				E2146F511E268B8A00ED1B49 /* PeekabooMap.h */,
+				E2146F521E268B8A00ED1B49 /* PeekabooMap.m */,
+				E2146F531E268B8A00ED1B49 /* PlayerAnnotationView.h */,
+				E2146F541E268B8A00ED1B49 /* PlayerAnnotationView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2146F551E268B8A00ED1B49 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E2146F561E268B8A00ED1B49 /* PeekabooViewController.h */,
+				E2146F571E268B8A00ED1B49 /* PeekabooViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2146ED31E2683FC00ED1B49 /* Peekaboo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2146EEB1E2683FC00ED1B49 /* Build configuration list for PBXNativeTarget "Peekaboo" */;
+			buildPhases = (
+				E2146ED01E2683FC00ED1B49 /* Sources */,
+				E2146ED11E2683FC00ED1B49 /* Frameworks */,
+				E2146ED21E2683FC00ED1B49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Peekaboo;
+			productName = Peekaboo;
+			productReference = E2146ED41E2683FC00ED1B49 /* Peekaboo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2146ECC1E2683FC00ED1B49 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = splashz;
+				TargetAttributes = {
+					E2146ED31E2683FC00ED1B49 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E2146ECF1E2683FC00ED1B49 /* Build configuration list for PBXProject "Peekaboo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E2146ECB1E2683FC00ED1B49;
+			productRefGroup = E2146ED51E2683FC00ED1B49 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2146ED31E2683FC00ED1B49 /* Peekaboo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2146ED21E2683FC00ED1B49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2146EE71E2683FC00ED1B49 /* LaunchScreen.storyboard in Resources */,
+				E2146EE41E2683FC00ED1B49 /* Assets.xcassets in Resources */,
+				E2146EE21E2683FC00ED1B49 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2146ED01E2683FC00ED1B49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2146F591E268B8A00ED1B49 /* PeekabooAnnotation.m in Sources */,
+				E2146F5B1E268B8A00ED1B49 /* PeekabooManager.m in Sources */,
+				E2146F581E268B8A00ED1B49 /* LocationManager.m in Sources */,
+				E2146EDC1E2683FC00ED1B49 /* AppDelegate.m in Sources */,
+				E2146F611E268B8A00ED1B49 /* PlayerAnnotationView.m in Sources */,
+				E2146ED91E2683FC00ED1B49 /* main.m in Sources */,
+				E2146F5D1E268B8A00ED1B49 /* PlayerAnnotation.m in Sources */,
+				E2146F5C1E268B8A00ED1B49 /* Player.m in Sources */,
+				E2146F671E268B9A00ED1B49 /* BaseNavigationController.m in Sources */,
+				E2146F681E268B9A00ED1B49 /* ViewController.m in Sources */,
+				E2146F621E268B8A00ED1B49 /* PeekabooViewController.m in Sources */,
+				E2146F5E1E268B8A00ED1B49 /* TestInfo.m in Sources */,
+				E2146F5A1E268B8A00ED1B49 /* PeekabooInfo.m in Sources */,
+				E2146F5F1E268B8A00ED1B49 /* PeekabooAnnotationView.m in Sources */,
+				E2146F601E268B8A00ED1B49 /* PeekabooMap.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E2146EE01E2683FC00ED1B49 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2146EE11E2683FC00ED1B49 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E2146EE51E2683FC00ED1B49 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E2146EE61E2683FC00ED1B49 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E2146EE91E2683FC00ED1B49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E2146EEA1E2683FC00ED1B49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E2146EEC1E2683FC00ED1B49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Peekaboo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = splashz.Peekaboo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E2146EED1E2683FC00ED1B49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Peekaboo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = splashz.Peekaboo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2146ECF1E2683FC00ED1B49 /* Build configuration list for PBXProject "Peekaboo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2146EE91E2683FC00ED1B49 /* Debug */,
+				E2146EEA1E2683FC00ED1B49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2146EEB1E2683FC00ED1B49 /* Build configuration list for PBXNativeTarget "Peekaboo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2146EEC1E2683FC00ED1B49 /* Debug */,
+				E2146EED1E2683FC00ED1B49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2146ECC1E2683FC00ED1B49 /* Project object */;
+}
