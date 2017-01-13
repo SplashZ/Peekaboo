@@ -13,8 +13,6 @@
 #import "PlayerAnnotationView.h"
 #import "LocationManager.h"
 
-#import <objc/runtime.h>
-
 NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotification";
 
 @interface PeekabooMap () <MKMapViewDelegate>
@@ -307,33 +305,49 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    if([view isKindOfClass:[PeekabooAnnotationView class]]) {
+    if([view isKindOfClass:[PeekabooAnnotationView class]] && view.canShowCallout) {
         PeekabooAnnotationView *annotationView = (PeekabooAnnotationView *)view;
         PeekabooAnnotation *annotation = annotationView.annotation;
-        NSMutableString *desc = [NSMutableString stringWithString:@"🌐距离"];
-        NSString *distanceStr = [LocationManager distanceFromOrigin:mapView.userLocation.coordinate toDestination:annotationView.annotation.coordinate];
-        [desc appendString:annotation.locationDesc];
-        [desc appendString:@"还有"];
-        [desc appendString:distanceStr];
-        annotation.subtitle = desc;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSMutableString *desc = [NSMutableString stringWithString:@"🌐距离"];
+            NSString *distanceStr = [LocationManager distanceFromOrigin:mapView.userLocation.coordinate toDestination:annotationView.annotation.coordinate];
+            [desc appendString:annotation.locationDesc];
+            [desc appendString:@"还有"];
+            [desc appendString:distanceStr];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                annotation.subtitle = desc;
+            });
+        });
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    if([view isKindOfClass:[PeekabooAnnotationView class]] && view.canShowCallout) {
+        PeekabooAnnotationView *annotationView = (PeekabooAnnotationView *)view;
+        PeekabooAnnotation *annotation = annotationView.annotation;
+        annotation.subtitle = @"";
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray<MKAnnotationView *> *)views
 {
+    CGRect visibleRect = [mapView annotationVisibleRect];
+    
     for (MKAnnotationView *view in views) {
         if(![view isKindOfClass:[PeekabooAnnotationView class]]) {
             continue;
         }
-
-        view.transform = CGAffineTransformMakeScale(0, 0);
-        [UIView animateWithDuration:0.3 animations:^{
-            view.transform = CGAffineTransformMakeScale(1.2, 1.2);
-        } completion:^(BOOL finished) {
+        if (!CGRectIntersectsRect(visibleRect, view.frame)) {
+            continue;
+        }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{            
+            view.transform = CGAffineTransformMakeScale(0, 0);
             [UIView animateWithDuration:0.1 animations:^{
-                view.transform = CGAffineTransformIdentity;
-            }];
-        }];
+                view.transform = CGAffineTransformMakeScale(1.2, 1.2);
+            } completion:nil];
+        });
     }
 }
 

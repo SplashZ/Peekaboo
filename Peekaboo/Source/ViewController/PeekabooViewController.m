@@ -152,20 +152,21 @@
 {
     //坑爹的天朝定位偏移
     MKUserLocation *userLocation = notification.object;
+    CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
     
     __weak typeof(self) weakSelf = self;
     
     [self.mapView showIndicator];
-    [self.locationManager addGeocodingOperationWithCoordinate:userLocation.coordinate completionHandler:^(NSString *locationInfo) {
+    [self.locationManager addGeocodingOperationWithCoordinate:userCoordinate completionHandler:^(NSString *locationInfo) {
         Player *player = [Player shareInstance];
         player.locationDesc = locationInfo;
         [weakSelf.mapView updateUserLocationWithTitle:[player name] subTitle:player.locationDesc];
-        PlayerAnnotation *playerAnnotation = [PlayerAnnotation peekabooAnnotationWithCoordinate:userLocation.coordinate radius:[TestInfo radius]];
+        PlayerAnnotation *playerAnnotation = [PlayerAnnotation peekabooAnnotationWithCoordinate:userCoordinate radius:[TestInfo radius]];
         [weakSelf.mapView addAnnotation:playerAnnotation];
         [weakSelf.mapView hideIndicator];
     }];
     
-    [self.peekabooManger collectionPeekaboosWithCoordinate:userLocation.coordinate];
+    [self.peekabooManger collectionPeekaboosWithCoordinate:userCoordinate];
     [self.peekabooManger.peekabooInfos enumerateObjectsUsingBlock:^(PeekabooInfo * _Nonnull peekabooInfo, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.mapView showIndicator];
         CLLocationCoordinate2D coordinate = (CLLocationCoordinate2D){peekabooInfo.latitude, peekabooInfo.longitude};
@@ -180,7 +181,7 @@
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 //等到下一个loop获取annotationView
-                if ([region containsCoordinate:userLocation.coordinate]) {
+                if ([region containsCoordinate:userCoordinate]) {
                     MKAnnotationView *annotationView = [weakSelf.mapView annotationViewWithAnnotationIdentifier:region.identifier];
                     peekabooAnnotation.canShowCallout = YES;
                     annotationView.canShowCallout = YES;

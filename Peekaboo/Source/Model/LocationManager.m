@@ -171,6 +171,7 @@
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center
                                                                  radius:radius
                                                              identifier:identifier];
+    NSLog(@"%@", identifier);
  
     [self.locationManager startMonitoringForRegion:region];
     
