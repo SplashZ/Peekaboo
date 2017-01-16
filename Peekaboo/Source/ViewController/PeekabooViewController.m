@@ -88,6 +88,7 @@
             }
             
             [self.view addSubview:self.mapView];
+            self.locationManager.map = self.mapView.mapView;
             break;
         case kCLAuthorizationStatusDenied:
         {
@@ -175,7 +176,6 @@
         return;
     }
     
-    //坑爹的天朝定位偏移
     MKUserLocation *userLocation = notification.object;
     CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
     

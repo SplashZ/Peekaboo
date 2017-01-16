@@ -239,8 +239,10 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
 
 #pragma mark - MKMapViewDelegate
 
+//由于CLLocationManager的定位和MapView的定位值有偏差，所以CLLocationManager的定位基本可以废掉了
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+//    NSLog(@"MKMapView---la:%lf-----lo:%lf", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
     if (userLocation.coordinate.latitude == 0 && userLocation.coordinate.longitude == 0) {
         return;
     }
@@ -274,8 +276,11 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
     [self constraintSpanRegionWithMapView:mapView];
     
     //防止内存暴增导致crash，有点作用，不过还是无法阻止内存的暴增
-    [mapView removeFromSuperview];
-    [self insertSubview:mapView belowSubview:self.toolBar];
+    //关键这种方法会阻碍AnnotationView的点击事件的传递
+    //坑爹的MapKit
+    //考虑到这些原因，如果使用原生的MapKit框架，地图最好关闭所有手势
+//    [mapView removeFromSuperview];
+//    [self insertSubview:mapView belowSubview:self.toolBar];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation

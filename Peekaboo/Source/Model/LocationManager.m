@@ -212,6 +212,10 @@
      didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     self.isUpdating = YES;
+    CLLocation *location = [locations lastObject];
+    TestLog(@"CLLocationManager---la:%lf, lo:%lf", location.coordinate.latitude, location.coordinate.longitude);
+    TestLog(@"MKMapView---la:%lf, lo:%lf", self.map.userLocation.coordinate.latitude, self.map.userLocation.coordinate.longitude);
+    TestLog(@"laDelta:%lf, loDelta:%lf", location.coordinate.latitude - self.map.userLocation.coordinate.latitude, location.coordinate.longitude - self.map.userLocation.coordinate.longitude);
 }
 
 -(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region

@@ -68,7 +68,6 @@
     self.viewController.navigationItem.titleView = self.clearBtn;
     self.clearBtn.alpha = 0;
     
-    [self.viewController.view addSubview:self];
     [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformIdentity;
         self.clearBtn.alpha = 1;
@@ -112,7 +111,6 @@
 {
     NSString *logInfo = notification.object;
     self.textView.text = logInfo;
-    NSLog(@"%p", logInfo);
 }
 
 #pragma mark - getter
@@ -135,6 +133,8 @@
         _textView = [[UITextView alloc] init];
         _textView.backgroundColor = [UIColor blackColor];
         _textView.textColor = [UIColor whiteColor];
+        _textView.showsVerticalScrollIndicator = YES;
+        _textView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
         _textView.editable = NO;
     }
     return _textView;

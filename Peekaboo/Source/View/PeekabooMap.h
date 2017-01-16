@@ -20,6 +20,8 @@ FOUNDATION_EXTERN NSString *UserLocationDidUpdateNotification;
 
 @interface PeekabooMap : UIView
 
+@property (nonatomic, strong, readonly) MKMapView *mapView;
+
 @property (nonatomic, weak) id<PeekabooMapDelegate> delegate;
 
 + (instancetype)mapViewWithFrame:(CGRect)frame;

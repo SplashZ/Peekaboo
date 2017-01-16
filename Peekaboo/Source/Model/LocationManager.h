@@ -22,6 +22,7 @@
 
 @interface LocationManager : NSObject
 
+@property (nonatomic, weak) MKMapView *map;
 @property (nonatomic, weak) id<LocationManagerDelegate> delegate;
 
 + (instancetype)locationManager;

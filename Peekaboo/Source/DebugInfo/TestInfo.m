@@ -95,7 +95,10 @@ static NSMutableString *logInfo = nil;
 + (void)setLog:(NSString *)log
 {
     [self.logInfo appendString:[NSString stringWithFormat:@"[%lf] %@\n", CACurrentMediaTime(), log]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:LogDidUpdated object:self.logInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"-------------");
+        [[NSNotificationCenter defaultCenter] postNotificationName:LogDidUpdated object:self.logInfo];
+    });
 }
 
 + (NSString *)getLog
