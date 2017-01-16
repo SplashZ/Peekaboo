@@ -8,12 +8,14 @@
 
 #import <MapKit/MapKit.h>
 
+@class PeekabooAnnotation;
+
 @interface PeekabooAnnotationView : MKAnnotationView
 
 @property (nonatomic, weak) MKMapView *mapView;
 @property (nonatomic, strong) UIImage *calloutImage;
 @property (nonatomic, assign) BOOL showOverlay;
-@property (nonatomic, copy) void(^CalloutDidClick)(void);
+@property (nonatomic, copy) void(^CalloutDidClick)(PeekabooAnnotation *annotation);
 
 - (void)removeRadiusOverlay;
 - (void)updateRadiusOverlay;

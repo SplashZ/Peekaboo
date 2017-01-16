@@ -8,7 +8,6 @@
 
 #import "PeekabooAnnotation.h"
 #import "PeekabooInfo.h"
-#import "TestInfo.h"
 
 @interface PeekabooAnnotation ()
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface PeekabooViewController : UIViewController
+@interface PeekabooViewController : BaseViewController
 
 @end

@@ -15,21 +15,26 @@
 #import "PeekabooAnnotationView.h"
 #import "PlayerAnnotation.h"
 #import "LocationManager.h"
-#import "TestInfo.h"
 
-@interface PeekabooViewController () <LocationManagerDelegate>
+
+@interface PeekabooViewController () <LocationManagerDelegate, PeekabooMapDelegate>
 
 @property (nonatomic, strong) PeekabooMap *mapView;
 @property (nonatomic, strong) PeekabooManager *peekabooManger;
 @property (nonatomic, strong) LocationManager *locationManager;
 @property (nonatomic, assign) CLAuthorizationStatus authorizationStatus;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
-///需要的时候可以取消监听对应的region
-@property (nonatomic, strong) NSMutableDictionary<NSString *, CLCircularRegion *> *regionsDict;
+
+@property (nonatomic, assign) BOOL annotationLoaded;
 
 @end
 
 @implementation PeekabooViewController
+
+- (void)dealloc
+{
+    [self removeNotifications];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,12 +61,12 @@
 - (void)assignDefaultValue
 {
     _authorizationStatus = kCLAuthorizationStatusNotDetermined;
+    _annotationLoaded = NO;
 }
 
 - (void)assignNavigationBar
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"information"] style:UIBarButtonItemStylePlain target:self action:@selector(popIntroduce)];
     self.title = @"Peekaboo";
 }
 
@@ -136,6 +141,16 @@
     }
 }
 
+#pragma mark - PeekabooMapDelegate
+
+- (void)peekabooMap:(PeekabooMap *)peekabooMap didLeftCalloutClicked:(PeekabooAnnotation *)annotation
+{
+    TestLog(@"%@ did clicked!-%@", annotation.locationDesc, [NSThread currentThread]);
+    BaseViewController *vc = [BaseViewController new];
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - notification
 
 - (void)addNotifications
@@ -148,8 +163,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)removeNotificationWithName:(NSString *)name
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:name object:nil];
+}
+
 - (void)locationDidUpdated:(NSNotification *)notification
 {
+    if (self.annotationLoaded) {
+        [self removeNotificationWithName:UserLocationDidUpdateNotification];
+        return;
+    }
+    
     //坑爹的天朝定位偏移
     MKUserLocation *userLocation = notification.object;
     CLLocationCoordinate2D userCoordinate = userLocation.coordinate;
@@ -161,7 +186,9 @@
         Player *player = [Player shareInstance];
         player.locationDesc = locationInfo;
         [weakSelf.mapView updateUserLocationWithTitle:[player name] subTitle:player.locationDesc];
+        PlayerAnnotation *playerAnnotation1 = [PlayerAnnotation peekabooAnnotationWithCoordinate:userCoordinate radius:[TestInfo radius]];
         PlayerAnnotation *playerAnnotation = [PlayerAnnotation peekabooAnnotationWithCoordinate:userCoordinate radius:[TestInfo radius]];
+        [weakSelf.mapView addAnnotation:playerAnnotation1];
         [weakSelf.mapView addAnnotation:playerAnnotation];
         [weakSelf.mapView hideIndicator];
     }];
@@ -176,10 +203,9 @@
             PeekabooAnnotation *peekabooAnnotation = [PeekabooAnnotation peekabooAnnotationWithPeekabooInfo:peekabooInfo];
             [weakSelf.mapView addAnnotation:peekabooAnnotation];
             CLCircularRegion *region = [weakSelf.locationManager startMonitorRegionWithCenter:peekabooAnnotation.coordinate radius:peekabooAnnotation.radius identifier:peekabooAnnotation.identifier];
-            weakSelf.regionsDict[region.identifier] = region;
             [weakSelf.mapView hideIndicator];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 //等到下一个loop获取annotationView
                 if ([region containsCoordinate:userCoordinate]) {
                     MKAnnotationView *annotationView = [weakSelf.mapView annotationViewWithAnnotationIdentifier:region.identifier];
@@ -191,8 +217,8 @@
     }];
     
     [self.locationManager startGeocoding];
-    
-    [self removeNotifications];
+    [self removeNotificationWithName:UserLocationDidUpdateNotification];
+    self.annotationLoaded = YES;
 }
 
 #pragma mark - touch event
@@ -202,17 +228,13 @@
     [self showSubviewsWithStatus:self.authorizationStatus];
 }
 
-- (void)popIntroduce
-{
-    
-}
-
 #pragma mark - getter
 
 - (PeekabooMap *)mapView
 {
     if (!_mapView) {
         _mapView = [PeekabooMap mapViewWithFrame:self.view.frame];
+        _mapView.delegate = self;
     }
     return _mapView;
 }
@@ -240,14 +262,6 @@
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnView:)];
     }
     return _tapGesture;
-}
-
-- (NSMutableDictionary<NSString *, CLCircularRegion *> *)regionsDict
-{
-    if (!_regionsDict) {
-        _regionsDict = [NSMutableDictionary dictionary];
-    }
-    return _regionsDict;
 }
 
 @end

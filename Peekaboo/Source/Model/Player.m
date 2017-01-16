@@ -7,7 +7,6 @@
 //
 
 #import "Player.h"
-#import "TestInfo.h"
 
 @implementation Player
 

@@ -116,12 +116,12 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
     if ([annotation isKindOfClass:[PlayerAnnotation class]]) {
         self.playerAnnotation = annotation;
     } else if ([annotation isKindOfClass:[PeekabooAnnotation class]]) {
-        PeekabooAnnotation *gifAnnotation = (PeekabooAnnotation *)annotation;
-        if (!gifAnnotation.identifier.length) {
+        PeekabooAnnotation *peekabooAnnotation = (PeekabooAnnotation *)annotation;
+        if (!peekabooAnnotation.identifier.length) {
             self.identifierNum ++;
-            gifAnnotation.identifier = [NSString stringWithFormat:@"PeekabooAnnotationIdentifier%@", @(self.identifierNum)];
+            peekabooAnnotation.identifier = [NSString stringWithFormat:@"PeekabooAnnotationIdentifier%@", @(self.identifierNum)];
         }
-        self.annotationsDict[gifAnnotation.identifier] = gifAnnotation;
+        self.annotationsDict[peekabooAnnotation.identifier] = peekabooAnnotation;
     }
 }
 
@@ -135,13 +135,23 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
 
 - (void)updateOverlayerOfPlayer:(BOOL)isUpdate
 {
-    PlayerAnnotationView *annotationView = (PlayerAnnotationView *)[self.mapView viewForAnnotation:self.playerAnnotation];
-    
-    if (isUpdate) {
-        [annotationView updateRadiusOverlayAndAnnotationWithCoordinate:self.mapView.userLocation.coordinate];
-    } else {
-        [annotationView removeRadiusOverlay];
-    }
+    [self.mapView.annotations enumerateObjectsUsingBlock:^(PlayerAnnotation * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PlayerAnnotation class]]) {
+            
+            PlayerAnnotationView *annotationView = (PlayerAnnotationView *)[self.mapView viewForAnnotation:obj];
+            if (isUpdate) {
+                if (obj == self.playerAnnotation) {
+                    TestLog(@"%lf----%lf", self.mapView.userLocation.coordinate.latitude, self.mapView.userLocation.coordinate.longitude);
+                    [annotationView updateRadiusOverlayAndAnnotationWithCoordinate:self.mapView.userLocation.coordinate];
+                } else {
+                    TestLog(@"%lf----%lf", obj.coordinate.latitude, obj.coordinate.longitude);
+                    [annotationView updateRadiusOverlayAndAnnotationWithCoordinate:obj.coordinate];
+                }
+            } else {
+                [annotationView removeRadiusOverlay];
+            }
+        }
+    }];
 }
 
 - (void)constraintSpanRegionWithMapView:(MKMapView *)mapView
@@ -149,7 +159,7 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
     //    latitudeDelta:0.118848-longitudeDelta:0.080327
     //    latitudeDelta:0.026287-longitudeDelta:0.017767
     //    latitudeDelta:0.001035-longitudeDelta:0.000699
-    //    NSLog(@"latitude:%lf-longitude:%lf, latitudeDelta:%lf-longitudeDelta:%lf", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
+//    NSLog(@"latitude:%lf-longitude:%lf, latitudeDelta:%lf-longitudeDelta:%lf", mapView.region.center.latitude, mapView.region.center.longitude, mapView.region.span.latitudeDelta, mapView.region.span.longitudeDelta);
     MKCoordinateSpan span = mapView.region.span;
     BOOL isExceed = NO;
     
@@ -167,7 +177,7 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
         MKCoordinateRegion region;
         region.center = mapView.userLocation.coordinate;
         region.span = span;
-        [self.mapView setRegion:region animated:NO];
+        [self.mapView setRegion:region animated:YES];
     }
 }
 
@@ -272,18 +282,20 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
 {
     NSString *identifier = [NSString stringWithFormat:@"%@Identifer", [[annotation class] description]];
     if([annotation isKindOfClass:[PeekabooAnnotation class]]) {
-        PeekabooAnnotation *gifAnnotation = (PeekabooAnnotation *)annotation;
+        PeekabooAnnotation *peekabooAnnotation = (PeekabooAnnotation *)annotation;
         PeekabooAnnotationView *annotationView = (PeekabooAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier: identifier];
-        
         if (!annotationView) {
-            annotationView = [[PeekabooAnnotationView alloc] initWithAnnotation:gifAnnotation reuseIdentifier:identifier];
+            annotationView = [[PeekabooAnnotationView alloc] initWithAnnotation:peekabooAnnotation reuseIdentifier:identifier];
             annotationView.mapView = mapView;
-            annotationView.CalloutDidClick = ^{
+            annotationView.CalloutDidClick = ^(PeekabooAnnotation *annotation) {
                 //TODO: CalloutDidClick
+                if (self.delegate && [self.delegate respondsToSelector:@selector(peekabooMap:didLeftCalloutClicked:)]) {
+                    [self.delegate peekabooMap:self didLeftCalloutClicked:annotation];
+                }
             };
         }
         
-        annotationView.annotation = gifAnnotation;
+        annotationView.annotation = peekabooAnnotation;
         
         return annotationView;
     } else if ([annotation isKindOfClass:[PlayerAnnotation class]]) {
@@ -375,7 +387,7 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
         circleView.lineWidth = 1;
-        circleView.strokeColor = [UIColor blueColor];
+        circleView.strokeColor = [UIColor greenColor];
         circleView.fillColor = [circleView.strokeColor colorWithAlphaComponent:0.1];
 #pragma clang diagnostic pop
         return circleView;
@@ -398,7 +410,7 @@ NSString *UserLocationDidUpdateNotification = @"UserLocationDidUpdateNotificatio
         _mapView.scrollEnabled = YES;
         _mapView.rotateEnabled = YES;
         _mapView.pitchEnabled = NO;
-        _mapView.showsCompass = YES;
+        _mapView.showsCompass = NO;
         _mapView.showsScale = YES;
         _mapView.showsBuildings = YES;
         _mapView.showsTraffic = YES;

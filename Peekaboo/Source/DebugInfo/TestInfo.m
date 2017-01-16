@@ -6,9 +6,9 @@
 //  Copyright © 2017 splashz. All rights reserved.
 //
 
-#import "TestInfo.h"
 #import "PeekabooInfo.h"
 
+NSString *LogDidUpdated = @"LogDidUpdated";
 
 @implementation TestInfo
 
@@ -16,6 +16,7 @@ static int latitudeDelta = 5000;
 static int longitudeDelta = 3000;
 static double radius = 300;
 static NSArray * profiles = nil;
+static NSMutableString *logInfo = nil;
 
 + (void)initPlayersProfiles
 {
@@ -82,5 +83,30 @@ static NSArray * profiles = nil;
     return radius;
 }
 
++ (NSMutableString *)logInfo
+{
+    if (!logInfo) {
+        logInfo = [NSMutableString string];
+    }
+    
+    return logInfo;
+}
+
++ (void)setLog:(NSString *)log
+{
+    [self.logInfo appendString:[NSString stringWithFormat:@"[%lf] %@\n", CACurrentMediaTime(), log]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LogDidUpdated object:self.logInfo];
+}
+
++ (NSString *)getLog
+{
+    return self.logInfo;
+}
+
++ (void)clearLog
+{
+    [self.logInfo deleteCharactersInRange:NSMakeRange(0, logInfo.length)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LogDidUpdated object:self.logInfo];
+}
 
 @end

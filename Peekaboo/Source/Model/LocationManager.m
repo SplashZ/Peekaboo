@@ -47,6 +47,17 @@
 
 #pragma mark - life cycly
 
+- (void)dealloc
+{
+    [self stopLocation];
+    
+    [self.locationManager.monitoredRegions enumerateObjectsUsingBlock:^(__kindof CLRegion * _Nonnull region, BOOL * _Nonnull stop) {
+        [self stopMonitorRegion:region];
+    }];
+    
+    [self.geoCoder cancelGeocode];
+}
+
 + (instancetype)locationManager
 {
     LocationManager *locationManager = [LocationManager new];
@@ -171,7 +182,6 @@
     CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:center
                                                                  radius:radius
                                                              identifier:identifier];
-    NSLog(@"%@", identifier);
  
     [self.locationManager startMonitoringForRegion:region];
     
@@ -233,7 +243,7 @@
             if (whenInUse) {
                 [_locationManager requestWhenInUseAuthorization];
             } else {
-                NSLog(@"Location service is not authorization!");
+                TestLog(@"Location service is not authorization!");
             }
         }
     }

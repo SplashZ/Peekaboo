@@ -73,7 +73,6 @@
 {
     if (!self.leftCalloutAccessoryView) {
         [self addCalloutContainer];
-        
     }
     
     UIButton *btn = (UIButton *)self.leftCalloutAccessoryView;
@@ -95,7 +94,8 @@
 - (void)btnClicked:(UIButton *)btn
 {
     if (_CalloutDidClick) {
-        _CalloutDidClick();
+        TestLog(@"<_CalloutDidClick:%p>", _CalloutDidClick);
+        _CalloutDidClick(self.annotation);
     }
 }
 

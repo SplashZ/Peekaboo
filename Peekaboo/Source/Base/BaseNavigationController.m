@@ -8,6 +8,7 @@
 
 #import "BaseNavigationController.h"
 
+
 @interface BaseNavigationController ()
 
 @end
@@ -17,10 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationBar.tintColor = [UIColor blueColor];
     self.navigationBar.translucent = YES;
     [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : self.navigationBar.tintColor};
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return [self.topViewController preferredStatusBarStyle];
 }
 
 @end

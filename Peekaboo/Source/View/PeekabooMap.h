@@ -10,9 +10,17 @@
 
 FOUNDATION_EXTERN NSString *UserLocationDidUpdateNotification;
 
-@class MKMapView, PeekabooAnnotationView;
+@class MKMapView, PeekabooMap, PeekabooAnnotationView, PeekabooAnnotation;
+
+@protocol PeekabooMapDelegate <NSObject>
+
+- (void)peekabooMap:(PeekabooMap *)peekabooMap didLeftCalloutClicked:(PeekabooAnnotation *)annotation;
+
+@end
 
 @interface PeekabooMap : UIView
+
+@property (nonatomic, weak) id<PeekabooMapDelegate> delegate;
 
 + (instancetype)mapViewWithFrame:(CGRect)frame;
 - (void)updateUserLocationWithTitle:(NSString *)title subTitle:(NSString *)subTitle;

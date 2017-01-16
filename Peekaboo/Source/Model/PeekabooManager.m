@@ -9,7 +9,6 @@
 #import "PeekabooManager.h"
 #import "PeekabooInfo.h"
 
-#import "TestInfo.h"
 
 @interface PeekabooManager ()
 @property (nonatomic, strong) NSMutableArray *tipRegions;
